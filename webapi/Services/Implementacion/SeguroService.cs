@@ -14,14 +14,34 @@ namespace webapi.Services.Implementacion
             _dbContex = dbContex;
         }
 
-        public Task<Seguro> Add(Seguro modelo)
+        public async Task<Seguro> Add(Seguro modelo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbContex.Seguros.Add(modelo);
+                await _dbContex.SaveChangesAsync();
+                return modelo;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public Task<bool> Delete(Seguro modelo)
+        public async Task<bool> Delete(Seguro modelo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbContex.Seguros.Remove(modelo);
+                await _dbContex.SaveChangesAsync();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<List<Seguro>> GetList()
@@ -39,14 +59,34 @@ namespace webapi.Services.Implementacion
             //throw new NotImplementedException();
         }
 
-        public Task<Seguro> GetSeguroById(int id)
+        public async Task<Seguro> GetSeguroById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Seguro? encontrado = new Seguro();
+                encontrado = await _dbContex.Seguros.FirstOrDefaultAsync(a => a.Id == id);
+                return encontrado ?? new Seguro(); 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public Task<bool> Update(Seguro modelo)
+
+        public async Task<bool> Update(Seguro modelo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbContex.Seguros.Update(modelo);
+                await _dbContex.SaveChangesAsync();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

@@ -16,4 +16,8 @@ public partial class Seguro
     public decimal? Prima { get; set; }
 
     public virtual ICollection<Afiliado> Afiliados { get; set; } = new List<Afiliado>();
+
+    internal class SeguroDTO
+    {
+    }
 }

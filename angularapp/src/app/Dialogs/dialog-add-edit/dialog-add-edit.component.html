@@ -1,0 +1,70 @@
+<h1 mat-dialog-title>{{tituloAccion}} Afiliado</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="formAfiliado">
+    <mat-grid-list cols="1" rowHeight="80px">
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Ingrese Nombres</mat-label>
+          <input matInput formControlName="NombresCliente" autocomplete="off">
+          <!--placeholder="Placeholder"-->
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Ingrese Apellidos</mat-label>
+          <input matInput formControlName="ApellidosCliente" autocomplete="off">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Ingrese Cedula</mat-label>
+          <input matInput formControlName="Cedula" autocomplete="off">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Ingrese Telefono</mat-label>
+          <input matInput formControlName="Telefono" autocomplete="off">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Ingrese Edad</mat-label>
+          <input matInput formControlName="edad" autocomplete="off">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo de seguro</mat-label>
+          <mat-select formControlName="idSeguro">
+            <mat-option *ngFor="let elemet of listaSeguros" [value]="elemet.id">
+              {{elemet.id}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+
+    </mat-grid-list>
+
+  </form>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+  <button mat-raised-button color="primary"
+          (click)="addEditAfiliado()"
+          [disabled]="formAfiliado.invalid"
+          >{{botonAccion}}
+  </button>
+
+</div>

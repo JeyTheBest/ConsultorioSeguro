@@ -49,7 +49,7 @@ namespace webapi.Services.Implementacion
             try
             {
                 List<Afiliado> lista = new List<Afiliado>();
-                lista = await _dbContex.Afiliados.Include(sg => sg.IdSeguroNavigation).ToListAsync();
+                lista = await _dbContex.Afiliados.Include(af => af.IdSeguroNavigation).ToListAsync();
                 return lista; 
 
             }
@@ -60,12 +60,33 @@ namespace webapi.Services.Implementacion
             //throw new NotImplementedException();
         }
 
+        public async Task<Afiliado> Get(int id)
+        {
+
+            try
+            {
+                Afiliado? encontrado = new Afiliado();
+                encontrado = await _dbContex.Afiliados.Include(af => af.IdSeguroNavigation)
+                    .Where(e => e.Id == id).FirstOrDefaultAsync();
+                return encontrado;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //throw new NotImplementedException();
+        }
+
+
+
         public async Task<Afiliado> GetSeguroById(int id)
         {
             try
             {
                 Afiliado? encontrado = new Afiliado();
-                encontrado = await _dbContex.Afiliados.Include(sg => sg.IdSeguroNavigation)
+                encontrado = await _dbContex.Afiliados.Include(af => af.IdSeguroNavigation)
                 .Where(a => a.Id == id).FirstOrDefaultAsync();
                 return encontrado;
 
