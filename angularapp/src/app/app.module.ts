@@ -26,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatDialogModule } from '@angular/material/dialog'
 
 import { MatGridListModule } from '@angular/material/grid-list'
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 import { AfiliadoService } from './Services/afiliado.service';
@@ -40,7 +41,7 @@ import { SeguroDialogoComponent } from './Dialogs/seguro-dialogo/seguro-dialogo.
     DialogAddEditComponent,
     DialogoDeleteComponent,
     SeguroDialogoComponent
-    
+      
    
   ],
  
@@ -59,7 +60,8 @@ import { SeguroDialogoComponent } from './Dialogs/seguro-dialogo/seguro-dialogo.
     MatSnackBarModule,
     MatIconModule,
     MatDialogModule,
-    MatGridListModule
+    MatGridListModule,
+    MatButtonToggleModule
 
   ],
   providers: [],

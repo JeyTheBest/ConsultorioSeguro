@@ -6,3 +6,27 @@ table {
   font-size: 14px;
   width: 100%;
 }
+
+
+.custom-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 20vh; 
+}
+
+/* En tu archivo de estilos CSS */
+.custom-button-primary {
+  background-color: #FF5733; /* Color personalizado */
+  color: white; /* Color de texto */
+}
+
+.custom-button-secondary {
+  background-color: #3498DB; /* Color personalizado */
+  color: white; /* Color de texto */
+}
+
+
+
+

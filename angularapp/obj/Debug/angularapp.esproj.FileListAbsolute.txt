@@ -1,3 +1,4 @@
 C:\Users\User\source\repos\CODE-CHALLENGE\angularapp\obj\Debug\angularapp.esproj.SuggestedBindingRedirects.cache
 C:\Users\User\source\repos\CODE-CHALLENGE\angularapp\obj\Debug\angularapp.esproj.CoreCompileInputs.cache
 C:\Users\JEY\source\repos\CODE CHALLENGE\ConsultorioSeguro\angularapp\obj\Debug\angularapp.esproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ConsultorioSeguro\angularapp\obj\Debug\angularapp.esproj.CoreCompileInputs.cache
