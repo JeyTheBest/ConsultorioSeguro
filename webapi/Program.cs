@@ -53,8 +53,9 @@ if (app.Environment.IsDevelopment())
 
 
 #region PETICIONES API REST
-app.MapGet("/Seguro/Lista", async(
-    
+//----------------------API SEGUROS----------------------
+app.MapGet("/Seguro/Lista", async (
+
     CSeguroService _seguroServicio,
     IMapper _mapper
     ) =>
@@ -69,7 +70,77 @@ app.MapGet("/Seguro/Lista", async(
 
 });
 
+app.MapPost("/seguro/guardar", async (
+    SeguroDTO modelo,
+    CSeguroService _seguroServicio,
+    IMapper _mapper
 
+    ) => {
+
+        var _seguro = _mapper.Map<Seguro>(modelo);
+        var _seguroCreado = await _seguroServicio.Add(_seguro);
+        if (_seguroCreado.Id != 0)
+            return Results.Ok(_mapper.Map<SeguroDTO>(_seguroCreado));
+        else
+            return Results.StatusCode(StatusCodes.Status500InternalServerError);
+
+    });
+
+
+
+
+
+app.MapPut("/seguro/actualizar/{id}", async (
+    int id,
+    SeguroDTO modelo,
+    CSeguroService _seguroService,
+    IMapper _mapper
+
+
+    ) => {
+
+        var _encontrado = await _seguroService.Get(id);
+        if (_encontrado is null) return Results.NotFound();
+        var _seguro = _mapper.Map<Seguro>(modelo);
+
+        _encontrado.NombreSeguro = _seguro.NombreSeguro;
+        _encontrado.CodigoSeguro = _seguro.CodigoSeguro;
+        _encontrado.SumaAseguradora = _seguro.SumaAseguradora;
+        _encontrado.Prima = _seguro.Prima;
+
+
+
+        var respuesta = await _seguroService.Update(_seguro);
+
+        if (respuesta)
+            return Results.Ok(_mapper.Map<SeguroDTO>(_encontrado));
+
+        else
+            return Results.StatusCode(StatusCodes.Status500InternalServerError);
+
+
+    });
+
+
+
+app.MapDelete("/seguro/eliminar/{id}", async (
+    int id,
+    CSeguroService _seguroService
+
+    ) =>
+{
+
+    var _encontrado = await _seguroService.Get(id);
+    if (_encontrado is null) return Results.NotFound();
+    var respuesta = await _seguroService.Delete(_encontrado);
+    if (respuesta)
+        return Results.Ok();
+    else
+        return Results.StatusCode(StatusCodes.Status500InternalServerError);
+
+});
+
+//----------------------API AFILIADO---------------------
 
 app.MapGet("/Afiliado/Lista", async (
 

@@ -88,5 +88,25 @@ namespace webapi.Services.Implementacion
                 throw ex;
             }
         }
+
+
+        public async Task<Seguro> Get(int id)
+        {
+
+            try
+            {
+                Seguro? encontrado = new Seguro();
+                encontrado = await _dbContex.Seguros.Include(sg => sg.Id)
+                    .Where(e => e.Id == id).FirstOrDefaultAsync();
+                return encontrado;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //throw new NotImplementedException();
+        }
     }
 }
