@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { DialogAddEditComponent } from "./Dialogs/dialog-add-edit/dialog-add-edit.component";
 import { DialogoDeleteComponent } from "./Dialogs/dialogo-delete/dialogo-delete.component";
+import { SeguroDialogoComponent } from './Dialogs/seguro-dialogo/seguro-dialogo.component';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   constructor(
     private _afiliadoService: AfiliadoService,
+    private _seguroService: SeguroService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) {
@@ -45,7 +47,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   /*  ---------metodos-----------*/
 
 
-
+  /* ------------Afilaidos--------------*/
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -68,9 +70,9 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   DialogNuevoAfiliado() {
-    this.dialog.open(DialogAddEditComponent,{
-      disableClose:true,
-      width:"350px"
+    this.dialog.open(DialogAddEditComponent, {
+      disableClose: true,
+      width: "350px"
 
     }).afterClosed().subscribe(resultado => {
       if (resultado === "creado") {
@@ -82,15 +84,15 @@ export class AppComponent implements AfterViewInit, OnInit {
 
 
   dialogoEditarAfiliado(dataAfiliado: Afiliado) {
-    this.dialog.open(DialogAddEditComponent,{
+    this.dialog.open(DialogAddEditComponent, {
       disableClose: true,
       width: "350px",
-      data:dataAfiliado
+      data: dataAfiliado
 
     }).afterClosed().subscribe(resultado => {
       if (resultado === "editado") {
         this.mostrarAfiliados();
-      } 
+      }
 
     })
   }
@@ -103,10 +105,12 @@ export class AppComponent implements AfterViewInit, OnInit {
       duration: 3000
     });
   }
+
+
   dialogoEliminarAfiliado(dataAfiliado: Afiliado) {
     this.dialog.open(DialogoDeleteComponent, {
       disableClose: true,
-      
+
       data: dataAfiliado
 
     }).afterClosed().subscribe(resultado => {
@@ -118,11 +122,65 @@ export class AppComponent implements AfterViewInit, OnInit {
           },
           error: (e) => { console.log(e) }
         })
-       
+
       }
 
-         
+
     })
   }
+
+
+  /*--------------------SEGUROS------------------*/
+
+
+  DialogNuevoSeguro() {
+    this.dialog.open(SeguroDialogoComponent, {
+      disableClose: true,
+      width: "350px"
+
+    }).afterClosed().subscribe(resultado => {
+      if (resultado === "creado") {
+        /*this.mostrarAfiliados();*/
+      }
+
+    })
+  }
+
+  dialogoEditarSeguro(dataSeguro: Seguro) {
+    this.dialog.open(DialogAddEditComponent, {
+      disableClose: true,
+      width: "350px",
+      data: dataSeguro
+
+    }).afterClosed().subscribe(resultado => {
+      if (resultado === "editado") {
+        this.mostrarAfiliados();
+      }
+
+    })
+  }
+
+  dialogoEliminarSeguro(dataSeguro: Seguro) {
+    this.dialog.open(DialogoDeleteComponent, {
+      disableClose: true,
+
+      data: dataSeguro
+
+    }).afterClosed().subscribe(resultado => {
+      if (resultado === "Eliminar") {
+        this._seguroService.delete(dataSeguro.id).subscribe({
+          next: (data) => {
+            this.mostrarAlerta("Empleado fue eliminado", "listo");
+            
+          },
+          error: (e) => { console.log(e) }
+        })
+
+      }
+
+
+    })
+  }
+
 
 }

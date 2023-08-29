@@ -1,13 +1,13 @@
 export interface Afiliado {
 
   id: number,
-  NombresCliente: String,
-  ApellidosCliente: String,
-  Cedula: String,
-  Telefono: String,
+  NombresCliente: string,
+  ApellidosCliente: string,
+  Cedula: string,
+  Telefono: string,
   edad: number,
   idSeguro: number,
-  NombresSeguro?: String
+  NombresSeguro?: string
 
 
 }

@@ -31,13 +31,15 @@ import { MatGridListModule } from '@angular/material/grid-list'
 import { AfiliadoService } from './Services/afiliado.service';
 import { DialogAddEditComponent } from './Dialogs/dialog-add-edit/dialog-add-edit.component';
 import { DialogoDeleteComponent } from './Dialogs/dialogo-delete/dialogo-delete.component';
+import { SeguroDialogoComponent } from './Dialogs/seguro-dialogo/seguro-dialogo.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogAddEditComponent,
-    DialogoDeleteComponent
+    DialogoDeleteComponent,
+    SeguroDialogoComponent
     
    
   ],
