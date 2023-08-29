@@ -29,6 +29,8 @@ export class AppComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['NombresCliente', 'ApellidosCliente', 'Cedula', 'Telefono', 'edad', 'NombresSeguro', 'Acciones'];
   dataSource = new MatTableDataSource<Afiliado>();
 
+
+
   constructor(
     private _afiliadoService: AfiliadoService,
     private _seguroService: SeguroService,
@@ -38,8 +40,20 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   }
 
+  /*  -------------boton togle para ver lsitas----------------*/
+
+  currentComponent: string = '';
+
+  showComponent(componentName: string) {
+    this.currentComponent = componentName;
+  }
+
+
   ngOnInit(): void {
+
     this.mostrarAfiliados();
+
+   
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -132,6 +146,8 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   /*--------------------SEGUROS------------------*/
 
+
+ 
 
   DialogNuevoSeguro() {
     this.dialog.open(SeguroDialogoComponent, {

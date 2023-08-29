@@ -13,6 +13,7 @@
   <ItemGroup>
     <Folder Include="src\app\Interfaces\" />
     <Folder Include="src\app\Dialogs\" />
+    <Folder Include="src\app\Listas\" />
     <Folder Include="src\app\Services\" />
     <Folder Include="src\environments\" />
   </ItemGroup>

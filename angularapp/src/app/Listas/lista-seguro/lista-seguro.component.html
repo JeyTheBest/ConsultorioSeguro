@@ -1,0 +1,62 @@
+<div class="mat-elevation-z8">
+
+    <mat-form-field>
+        <mat-label>¿Qué estas buscando?</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="...." #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSourceSeguro">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="NombreSeguro">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreSeguro}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="CodigoSeguro">
+            <th mat-header-cell *matHeaderCellDef> Codigo </th>
+            <td mat-cell *matCellDef="let element"> {{element.codigoSeguro}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="SumaAseguradora">
+            <th mat-header-cell *matHeaderCellDef> Suma aseguradora </th>
+            <td mat-cell *matCellDef="let element"> {{element.sumaAseguradora}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Prima">
+            <th mat-header-cell *matHeaderCellDef> Prima </th>
+            <td mat-cell *matCellDef="let element"> {{element.prima}} </td>
+
+        </ng-container>
+
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let element">
+
+                <button mat-icon-button color="primary">
+                    <mat-icon>edit</mat-icon>
+                </button>
+
+                <button mat-icon-button color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+
+
+</div>

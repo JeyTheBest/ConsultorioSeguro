@@ -33,6 +33,8 @@ import { AfiliadoService } from './Services/afiliado.service';
 import { DialogAddEditComponent } from './Dialogs/dialog-add-edit/dialog-add-edit.component';
 import { DialogoDeleteComponent } from './Dialogs/dialogo-delete/dialogo-delete.component';
 import { SeguroDialogoComponent } from './Dialogs/seguro-dialogo/seguro-dialogo.component';
+import { ListaSeguroComponent } from './Listas/lista-seguro/lista-seguro.component';
+
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { SeguroDialogoComponent } from './Dialogs/seguro-dialogo/seguro-dialogo.
     AppComponent,
     DialogAddEditComponent,
     DialogoDeleteComponent,
-    SeguroDialogoComponent
+    SeguroDialogoComponent,
+    ListaSeguroComponent
       
    
   ],
