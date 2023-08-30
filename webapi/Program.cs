@@ -8,6 +8,7 @@ using AutoMapper;
 using webapi.DTOs;
 using webapi.Utilidades;
 using webapi;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -222,6 +223,29 @@ app.MapDelete("/afiliado/eliminar/{id}", async (
         return Results.StatusCode(StatusCodes.Status500InternalServerError);
     
 });
+
+app.MapGet("/afiliado/ListaSeguro/{id}", async (
+    int idSeguro,
+    CAfiliadoService _afiliadoService,
+    IMapper _mapper
+
+    ) =>
+{
+    
+         var _encontrados = await _afiliadoService.GetAfiliadosBySeguroId(idSeguro);
+         var listaAfiliadoDTO = _mapper.Map<List<AfiliadoDTO>>(_encontrados);
+
+    if (listaAfiliadoDTO.Count > 0)
+        return Results.Ok(listaAfiliadoDTO);
+    else
+        return Results.NotFound();
+
+});
+
+
+
+
+
 
 #endregion
 

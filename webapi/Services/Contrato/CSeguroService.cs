@@ -12,5 +12,7 @@ namespace webapi.Services.Contrato
 
         Task<bool> Delete(Seguro modelo);
         Task<Seguro> Get(int id);
+
+        
     }
 }

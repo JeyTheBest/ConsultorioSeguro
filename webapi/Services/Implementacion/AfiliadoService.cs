@@ -111,5 +111,31 @@ namespace webapi.Services.Implementacion
                 throw ex;
             }
         }
+
+
+        public async Task<List<Afiliado>> GetAfiliadosBySeguroId(int idSeguro)
+        {
+            try
+            {
+                List<Afiliado> afiliados = await _dbContex.Afiliados
+                    .Where(af => af.IdSeguro == idSeguro)
+                    .ToListAsync();
+
+                return afiliados;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
     }
+
+
+
+
+
+
 }

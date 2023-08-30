@@ -96,8 +96,7 @@ namespace webapi.Services.Implementacion
             try
             {
                 Seguro? encontrado = new Seguro();
-                encontrado = await _dbContex.Seguros.Include(sg => sg.Id)
-                    .Where(e => e.Id == id).FirstOrDefaultAsync();
+                encontrado = await _dbContex.Seguros.Where(e => e.Id == id).FirstOrDefaultAsync();
                 return encontrado;
 
 
@@ -106,7 +105,10 @@ namespace webapi.Services.Implementacion
             {
                 throw ex;
             }
-            //throw new NotImplementedException();
+            
         }
     }
+
+
+
 }

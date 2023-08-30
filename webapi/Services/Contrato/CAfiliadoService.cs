@@ -15,5 +15,8 @@ namespace webapi.Services.Contrato
         Task<bool> Update(Afiliado modelo);
 
         Task<bool> Delete(Afiliado modelo);
+
+        Task<List<Afiliado>> GetAfiliadosBySeguroId(int idSeguro);
+
     }
 }
