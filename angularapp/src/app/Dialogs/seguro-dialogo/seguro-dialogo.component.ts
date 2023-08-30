@@ -111,8 +111,26 @@ export class SeguroDialogoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
 
+    //if (this.dataSeguro) {
+    //  console.log(this.dataSeguro)
+    //  this.formSeguro.patchValue({
+
+    //    NombreSeguro: this.dataSeguro.NombreSeguro,
+    //    CodigoSeguro: this.dataSeguro.CodigoSeguro,
+    //    Prima: this.dataSeguro.Prima,
+    //    SumaAseguradora: this.dataSeguro.SumaAseguradora,
+
+
+    //  })
+
+    //  this.tituloAccion = "Editar";
+    //  this.botonAccion = "Actualizar";
+    //}
+
+  
+
+  }
 
 
 
@@ -121,11 +139,12 @@ export class SeguroDialogoComponent implements OnInit {
 
 function numerosOnlyValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const numerosPattern = /^[0-9]*$/; // Patrón de números
+    const numerosPattern = /^[0-9]*(\.[0-9]*)?$/; // Patrón para números enteros o decimales
     const esValido = numerosPattern.test(control.value);
     return esValido ? null : { 'numerosInvalidos': true };
   };
 }
+
 
 function letrasOnlyValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {

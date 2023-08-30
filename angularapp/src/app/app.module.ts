@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MomentDateModule } from '@angular/material-moment-adapter';
+import { RouterModule } from '@angular/router';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 
@@ -34,6 +35,8 @@ import { DialogAddEditComponent } from './Dialogs/dialog-add-edit/dialog-add-edi
 import { DialogoDeleteComponent } from './Dialogs/dialogo-delete/dialogo-delete.component';
 import { SeguroDialogoComponent } from './Dialogs/seguro-dialogo/seguro-dialogo.component';
 import { ListaSeguroComponent } from './Listas/lista-seguro/lista-seguro.component';
+import { EliminarSeguroComponent } from './Dialogs/eliminar-seguro/eliminar-seguro.component';
+import { VerAfilaidosSeguroComponent } from './Dialogs/ver-afilaidos-seguro/ver-afilaidos-seguro.component';
 
 
 
@@ -43,7 +46,9 @@ import { ListaSeguroComponent } from './Listas/lista-seguro/lista-seguro.compone
     DialogAddEditComponent,
     DialogoDeleteComponent,
     SeguroDialogoComponent,
-    ListaSeguroComponent
+    ListaSeguroComponent,
+    EliminarSeguroComponent,
+    VerAfilaidosSeguroComponent
       
    
   ],
@@ -64,7 +69,8 @@ import { ListaSeguroComponent } from './Listas/lista-seguro/lista-seguro.compone
     MatIconModule,
     MatDialogModule,
     MatGridListModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    
 
   ],
   providers: [],

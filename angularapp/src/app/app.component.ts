@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { DialogAddEditComponent } from "./Dialogs/dialog-add-edit/dialog-add-edit.component";
 import { DialogoDeleteComponent } from "./Dialogs/dialogo-delete/dialogo-delete.component";
-import { SeguroDialogoComponent } from './Dialogs/seguro-dialogo/seguro-dialogo.component';
+
 
 @Component({
   selector: 'app-root',
@@ -147,56 +147,37 @@ export class AppComponent implements AfterViewInit, OnInit {
   /*--------------------SEGUROS------------------*/
 
 
- 
-
-  DialogNuevoSeguro() {
-    this.dialog.open(SeguroDialogoComponent, {
-      disableClose: true,
-      width: "350px"
-
-    }).afterClosed().subscribe(resultado => {
-      if (resultado === "creado") {
-        /*this.mostrarAfiliados();*/
-      }
-
-    })
-  }
-
-  dialogoEditarSeguro(dataSeguro: Seguro) {
-    this.dialog.open(DialogAddEditComponent, {
-      disableClose: true,
-      width: "350px",
-      data: dataSeguro
-
-    }).afterClosed().subscribe(resultado => {
-      if (resultado === "editado") {
-        this.mostrarAfiliados();
-      }
-
-    })
-  }
-
-  dialogoEliminarSeguro(dataSeguro: Seguro) {
-    this.dialog.open(DialogoDeleteComponent, {
-      disableClose: true,
-
-      data: dataSeguro
-
-    }).afterClosed().subscribe(resultado => {
-      if (resultado === "Eliminar") {
-        this._seguroService.delete(dataSeguro.id).subscribe({
-          next: (data) => {
-            this.mostrarAlerta("Empleado fue eliminado", "listo");
-            
-          },
-          error: (e) => { console.log(e) }
-        })
-
-      }
 
 
-    })
-  }
+
+
+  //DialogNuevoSeguro() {
+  //  this.dialog.open(SeguroDialogoComponent, {
+  //    disableClose: true,
+  //    width: "350px"
+
+  //  }).afterClosed().subscribe(resultado => {
+  //    if (resultado === "creado") {
+  //      this.mostrarAfiliados();
+  //    }
+
+  //  })
+  //}
+
+  //dialogoEditarSeguro(dataSeguro: Seguro) {
+  //  this.dialog.open(DialogAddEditComponent, {
+  //    disableClose: true,
+  //    width: "350px",
+  //    data: dataSeguro
+
+  //  }).afterClosed().subscribe(resultado => {
+  //    if (resultado === "editado") {
+  //      this.mostrarAfiliados();
+  //    }
+
+  //  })
+  //}
+
 
 
 }

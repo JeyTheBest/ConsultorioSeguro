@@ -16,9 +16,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
-import { DialogAddEditComponent } from "src/app/Dialogs/dialog-add-edit/dialog-add-edit.component";
-import { DialogoDeleteComponent } from "src/app/Dialogs/dialogo-delete/dialogo-delete.component";
+
 import { SeguroDialogoComponent } from 'src/app/Dialogs/seguro-dialogo/seguro-dialogo.component';
+import { EliminarSeguroComponent } from 'src/app/Dialogs/eliminar-seguro/eliminar-seguro.component';
+import { VerAfilaidosSeguroComponent } from 'src/app/Dialogs/ver-afilaidos-seguro/ver-afilaidos-seguro.component';
+
+
 
 @Component({
   selector: 'app-lista-seguro',
@@ -43,6 +46,7 @@ export class ListaSeguroComponent implements OnInit {
   ngOnInit(): void {
 
     this.mostrarSeguros();
+
   }
 
 
@@ -60,6 +64,15 @@ export class ListaSeguroComponent implements OnInit {
     this.dataSourceSeguro.paginator = this.paginator;
   }
 
+
+  mostrarAlerta(msg: string, accion: string) {
+    this._snackBar.open(msg, accion, {
+      horizontalPosition: "end",
+      verticalPosition: "top",
+      duration: 3000
+    });
+  }
+
   mostrarSeguros() {
     this._seguroService.getList().subscribe({
       next: (dataResponse) => {
@@ -67,6 +80,68 @@ export class ListaSeguroComponent implements OnInit {
         this.dataSourceSeguro.data = dataResponse;
 
       }, error: (e) => { }
+
+    })
+  }
+
+  DialogMostrarAfiliadosSeguro(dataSeguro: Seguro) {
+    this.dialog.open(VerAfilaidosSeguroComponent, {
+      disableClose: true,
+      data: dataSeguro
+     
+    })
+  }
+
+
+  DialogNuevoSeguro() {
+    this.dialog.open(SeguroDialogoComponent, {
+      disableClose: true,
+      width: "350px"
+
+    }).afterClosed().subscribe(resultado => {
+      if (resultado === "creado") {
+        this.mostrarSeguros();
+      }
+
+    })
+  }
+
+  
+
+
+  dialogoEliminarSeguro(dataSeguro: Seguro) {
+    this.dialog.open(EliminarSeguroComponent, {
+      disableClose: true,
+
+      data: dataSeguro
+
+    }).afterClosed().subscribe(resultado => {
+      if (resultado === "Eliminar") {
+        this._seguroService.delete(dataSeguro.id).subscribe({
+          next: (data) => {
+            this.mostrarAlerta("Seguro fue eliminado", "listo");
+            this.mostrarSeguros();
+          },
+          error: (e) => { console.log(e) }
+        })
+
+      }
+
+
+    })
+  }
+
+
+  dialogoEditarSeguro(dataSeguro: Seguro) {
+    this.dialog.open(SeguroDialogoComponent, {
+      disableClose: true,
+      width: "350px",
+      data: dataSeguro
+
+    }).afterClosed().subscribe(resultado => {
+      if (resultado === "editado") {
+        this.mostrarSeguros();
+      }
 
     })
   }

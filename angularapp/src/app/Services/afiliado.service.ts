@@ -29,6 +29,9 @@ export class AfiliadoService {
     return this.http.delete<void>(`${this.apiUrl}eliminar/${id}`); // Ajusta la ruta según tu API
   }
 
+  getListAfiliadoSeguro(id: number): Observable<Afiliado[]> {
+    return this.http.get<Afiliado[]>(`${this.apiUrl}ListaSeguro/${id}`); // Ajusta la ruta según tu API
+  }
 
 
 
