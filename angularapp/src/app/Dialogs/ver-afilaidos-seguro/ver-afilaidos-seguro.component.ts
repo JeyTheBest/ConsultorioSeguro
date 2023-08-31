@@ -42,24 +42,17 @@ export class VerAfilaidosSeguroComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    mostrarAfiliadosSeguro() {
-      if (this.data && this.data.dataAfiliado && this.data.dataAfiliado.idSeguro) {
-        const id = this.data.dataAfiliado.idSeguro;
-        console.log('ID del Seguro:', id); // Paso 1: Imprimir el ID del seguro
-
-        this._afiliadoService.getListAfiliadoSeguro(id).subscribe({
-          next: (afiliados) => {
-            console.log('Afiliados:', afiliados); // Paso 2: Imprimir la respuesta del servicio
-            this.dataSourceAfiliadoSeguro.data = afiliados;
-          },
-          error: (error) => {
-            console.error('Error fetching afiliados por seguro:', error);
-          }
-        });
-      } else {
-        console.error('dataAfiliado is undefined or has no idSeguro');
-      }
-    }
+    if (this.data && this.data.dataAfiliado) {
+      this.afiliado = {
+        id: this.data.dataAfiliado.id,
+        cedula: this.data.dataAfiliado.cedula,
+        nombresCliente: this.data.dataAfiliado.nombresCliente,
+        apellidosCliente: this.data.dataAfiliado.apellidosCliente,
+        telefono: this.data.dataAfiliado.telefono,
+        edad: this.data.dataAfiliado.edad,
+        idSeguro: this.data.dataAfiliado.idSeguro,
+      };
+    } /*this.mostrarAfiliadosSeguro()*/
   }
 
 
@@ -68,7 +61,24 @@ export class VerAfilaidosSeguroComponent implements OnInit, AfterViewInit {
     this.dataSourceAfiliadoSeguro.paginator = this.paginator;
   }
 
-  
+  mostrarAfiliadosSeguro() {
+    if (this.data && this.data.dataAfiliado && this.data.dataAfiliado.idSeguro) {
+      const id = this.data.dataAfiliado.idSeguro;
+      console.log('ID del Seguro:', id); // Paso 1: Imprimir el ID del seguro
+
+      this._afiliadoService.getListAfiliadoSeguro(id).subscribe({
+        next: (afiliados) => {
+          console.log('Afiliados:', afiliados); // Paso 2: Imprimir la respuesta del servicio
+          this.dataSourceAfiliadoSeguro.data = afiliados;
+        },
+        error: (error) => {
+          console.error('Error fetching afiliados por seguro:', error);
+        }
+      });
+    } else {
+      console.error('dataAfiliado is undefined or has no idSeguro');
+    }
+  }
 
 
 
