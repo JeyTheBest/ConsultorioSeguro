@@ -33,7 +33,6 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   constructor(
     private _afiliadoService: AfiliadoService,
-    private _seguroService: SeguroService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) {
@@ -55,13 +54,10 @@ export class AppComponent implements AfterViewInit, OnInit {
 
    
   }
-
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  /*  ---------metodos-----------*/
-
-
-  /* ------------Afilaidos--------------*/
+  
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -106,6 +102,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     }).afterClosed().subscribe(resultado => {
       if (resultado === "editado") {
         this.mostrarAfiliados();
+
       }
 
     })
@@ -144,39 +141,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
 
-  /*--------------------SEGUROS------------------*/
 
-
-
-
-
-
-  //DialogNuevoSeguro() {
-  //  this.dialog.open(SeguroDialogoComponent, {
-  //    disableClose: true,
-  //    width: "350px"
-
-  //  }).afterClosed().subscribe(resultado => {
-  //    if (resultado === "creado") {
-  //      this.mostrarAfiliados();
-  //    }
-
-  //  })
-  //}
-
-  //dialogoEditarSeguro(dataSeguro: Seguro) {
-  //  this.dialog.open(DialogAddEditComponent, {
-  //    disableClose: true,
-  //    width: "350px",
-  //    data: dataSeguro
-
-  //  }).afterClosed().subscribe(resultado => {
-  //    if (resultado === "editado") {
-  //      this.mostrarAfiliados();
-  //    }
-
-  //  })
-  //}
 
 
 

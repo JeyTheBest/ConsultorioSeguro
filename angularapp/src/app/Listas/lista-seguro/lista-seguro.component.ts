@@ -35,7 +35,7 @@ export class ListaSeguroComponent implements OnInit {
   dataSourceSeguro = new MatTableDataSource<Seguro>();
 
   constructor(
-    private _afiliadoService: AfiliadoService,
+    
     private _seguroService: SeguroService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar

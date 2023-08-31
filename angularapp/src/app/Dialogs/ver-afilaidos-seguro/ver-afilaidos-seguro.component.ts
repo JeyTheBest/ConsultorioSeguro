@@ -31,15 +31,15 @@ export class VerAfilaidosSeguroComponent implements OnInit {
 
   displayedColumns: string[] = ['NombresCliente', 'ApellidosCliente', 'Cedula', 'Telefono', 'edad'];
   dataSourceAfiliadoSeguro = new MatTableDataSource<Afiliado>();
-
+  
  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private _afiliadoService: AfiliadoService ,) { }
 
   ngOnInit(): void {
-
-    /*this.mostrarAfiliadosSeguro(idSeguro);*/
+     
+    /*this.mostrarAfiliadosSeguro(idSeguro: number )*/
   }
 
 

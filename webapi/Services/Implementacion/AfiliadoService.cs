@@ -1,5 +1,7 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using webapi.Models;
 using webapi.Services.Contrato;
 
@@ -128,6 +130,45 @@ namespace webapi.Services.Implementacion
                 throw ex;
             }
         }
+
+
+        public Task<object> CargarUsuarios(IFormFile archivoExcel)
+        {
+            try
+            {
+                using (var package = new ExcelPackage(archivoExcel.OpenReadStream()))
+                {
+                    var worksheet = package.Workbook.Worksheets[0]; // Suponemos que los datos están en la primera hoja
+
+                    int rows = worksheet.Dimension.Rows;
+                    int cols = worksheet.Dimension.Columns;
+
+                    for (int row = 2; row <= rows; row++) // Comenzamos desde 2 para omitir el encabezado
+                    {
+                        string nombreUsuario = worksheet.Cells[row, 1].Text;
+                        string correoElectronico = worksheet.Cells[row, 2].Text;
+                        // Otras columnas...
+
+                        // Crear objeto de usuario y guardar en la base de datos
+                        // Lógica de la base de datos aquí...
+                    }
+                }
+
+                return Task.FromResult<object>(new { message = "Usuarios cargados exitosamente." });
+            }
+            catch (Exception ex)
+            {
+                return Task.FromResult<object>(new { message = "Error al cargar usuarios.", error = ex.Message });
+            }
+        }
+
+
+
+
+
+
+
+
 
 
 

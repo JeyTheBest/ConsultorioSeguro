@@ -18,5 +18,7 @@ namespace webapi.Services.Contrato
 
         Task<List<Afiliado>> GetAfiliadosBySeguroId(int idSeguro);
 
+        Task<object> CargarUsuarios(IFormFile archivoExcel);
+
     }
 }

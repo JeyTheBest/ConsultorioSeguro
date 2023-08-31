@@ -238,12 +238,30 @@ app.MapGet("/afiliado/ListaSeguro/{id}", async (
     if (listaAfiliadoDTO.Count > 0)
         return Results.Ok(listaAfiliadoDTO);
     else
-        return Results.NotFound();
+        return Results.NotFound(StatusCodes.Status500InternalServerError);
 
 });
 
 
+app.MapPost("/afiliado/CargarArchivo", async (
+    IFormFile archivoExcel,
+    CAfiliadoService _afiliadoService
 
+    ) =>
+{
+    try
+    {
+        var result = await _afiliadoService.CargarUsuarios(archivoExcel);
+
+        return Results.Ok(result); 
+        
+    }
+    catch (Exception ex)
+    {
+        return Results.NotFound(StatusCodes.Status500InternalServerError);
+    }
+
+});
 
 
 
