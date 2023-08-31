@@ -12,7 +12,7 @@ import { Seguro } from 'src/app/Interfaces/seguro';
 import { AfiliadoService } from 'src/app/Services/afiliado.service';
 import { SeguroService } from 'src/app/Services/seguro.service';
 
-@Component({
+@Component({  
   selector: 'app-dialog-add-edit',
   templateUrl: './dialog-add-edit.component.html',
   styleUrls: ['./dialog-add-edit.component.css']
@@ -74,15 +74,14 @@ export class DialogAddEditComponent implements OnInit {
 
     const modelo : Afiliado ={
       id: 0,
-      Cedula: this.formAfiliado.value.Cedula,
-      NombresCliente: this.formAfiliado.value.NombresCliente,
-      ApellidosCliente: this.formAfiliado.value.ApellidosCliente,
-      Telefono: this.formAfiliado.value.Telefono,
+      cedula: this.formAfiliado.value.Cedula,
+      nombresCliente: this.formAfiliado.value.NombresCliente,
+      apellidosCliente: this.formAfiliado.value.ApellidosCliente,
+      telefono: this.formAfiliado.value.Telefono,
       edad: this.formAfiliado.value.edad,
       idSeguro: this.formAfiliado.value.idSeguro,
      
     }
-
     if (this.dataAfiliado == null) {
       this._afiliadoSerive.add(modelo).subscribe({
         next: (data) => {
@@ -90,23 +89,23 @@ export class DialogAddEditComponent implements OnInit {
           this.dialogoReferencia.close("creado");
         }, error: (e) => {
           this.mostrarAlerta("No se pudo crear", "Error");
-        }
+        },
 
-      })
+      });
 
     } else {
-      this._afiliadoSerive.update(this.dataAfiliado.id,modelo).subscribe({
+      this._afiliadoSerive.update(this.dataAfiliado.id, modelo).subscribe({
         next: (data) => {
           this.mostrarAlerta("Afiliado fue editado", "listo");
-          this.dialogoReferencia.close("Editado");
+          this.dialogoReferencia.close("editado");
         }, error: (e) => {
           this.mostrarAlerta("No se pudo editar", "Error");
-        }
+        },
 
-      })
+      });
 
     }
-    
+    this.formAfiliado.reset();
   }
 
   ngOnInit(): void {
@@ -114,11 +113,11 @@ export class DialogAddEditComponent implements OnInit {
     if (this.dataAfiliado) {
       console.log(this.dataAfiliado)
       this.formAfiliado.patchValue({
-
-          Cedula: this.dataAfiliado.Cedula,
-          NombresCliente: this.dataAfiliado.NombresCliente,
-          ApellidosCliente: this.dataAfiliado.ApellidosCliente,
-          Telefono: this.dataAfiliado.Telefono,
+         /* id: this.dataAfiliado.id,*/
+          Cedula: this.dataAfiliado.cedula,
+          NombresCliente: this.dataAfiliado.nombresCliente,
+          ApellidosCliente: this.dataAfiliado.apellidosCliente,
+          Telefono: this.dataAfiliado.telefono,
           edad: this.dataAfiliado.edad,
           idSeguro: this.dataAfiliado.idSeguro,
         })

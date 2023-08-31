@@ -76,10 +76,10 @@ export class SeguroDialogoComponent implements OnInit {
 
     const modelo: Seguro = {
       id: 0,
-      NombreSeguro: this.formSeguro.value.NombreSeguro,
-      CodigoSeguro: this.formSeguro.value.CodigoSeguro,
-      Prima: this.formSeguro.value.Prima,
-      SumaAseguradora: this.formSeguro.value.SumaAseguradora,
+      nombreSeguro: this.formSeguro.value.NombreSeguro,
+      codigoSeguro: this.formSeguro.value.CodigoSeguro,
+      prima: this.formSeguro.value.Prima,
+      sumaAseguradora: this.formSeguro.value.SumaAseguradora,
 
 
     }
@@ -98,8 +98,8 @@ export class SeguroDialogoComponent implements OnInit {
     } else {
       this._seguroService.update(this.dataSeguro.id, modelo).subscribe({
         next: (data) => {
-          this.mostrarAlerta("Afiliado fue editado", "listo");
-          this.dialogoReferencia.close("Editado");
+          this.mostrarAlerta("Seguro fue editado", "listo");
+          this.dialogoReferencia.close("editado");
         }, error: (e) => {
           this.mostrarAlerta("No se pudo editar", "Error");
         }
@@ -112,21 +112,21 @@ export class SeguroDialogoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //if (this.dataSeguro) {
-    //  console.log(this.dataSeguro)
-    //  this.formSeguro.patchValue({
+    if (this.dataSeguro) {
+      console.log(this.dataSeguro)
+      this.formSeguro.patchValue({
 
-    //    NombreSeguro: this.dataSeguro.NombreSeguro,
-    //    CodigoSeguro: this.dataSeguro.CodigoSeguro,
-    //    Prima: this.dataSeguro.Prima,
-    //    SumaAseguradora: this.dataSeguro.SumaAseguradora,
+       NombreSeguro: this.dataSeguro.nombreSeguro,
+       CodigoSeguro: this.dataSeguro.codigoSeguro,
+       Prima: this.dataSeguro.prima,
+       SumaAseguradora: this.dataSeguro.sumaAseguradora,
 
 
-    //  })
+     })
 
-    //  this.tituloAccion = "Editar";
-    //  this.botonAccion = "Actualizar";
-    //}
+      this.tituloAccion = "Editar";
+     this.botonAccion = "Actualizar";
+    }
 
   
 

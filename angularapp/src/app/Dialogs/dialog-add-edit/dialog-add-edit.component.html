@@ -48,7 +48,7 @@
                     <mat-label>Tipo de seguro</mat-label>
                     <mat-select formControlName="idSeguro">
                         <mat-option *ngFor="let item of listaSeguros" [value]="item.id">
-                            {{item.id}}
+                            {{item.nombreSeguro}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

@@ -1,4 +1,5 @@
-﻿using webapi.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using webapi.Models;
 namespace webapi.Services.Contrato
 {
     public interface CAfiliadoService
@@ -17,6 +18,8 @@ namespace webapi.Services.Contrato
         Task<bool> Delete(Afiliado modelo);
 
         Task<List<Afiliado>> GetAfiliadosBySeguroId(int idSeguro);
+
+        Task<IActionResult> ImportarPersonasDesdeExcel(IFormFile excel);
 
     }
 }

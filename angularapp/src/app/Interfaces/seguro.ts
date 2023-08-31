@@ -1,9 +1,9 @@
 export interface Seguro {
 
   id: number,
-  NombreSeguro: string,
-  CodigoSeguro: string,
-  SumaAseguradora: number,
-  Prima: number
+  nombreSeguro: string,
+  codigoSeguro: string,
+  sumaAseguradora: number,
+  prima: number
 
 }
