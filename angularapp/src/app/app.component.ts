@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-
+import { Observable } from 'rxjs';
 
 import { Seguro } from './Interfaces/seguro';
 import { SeguroService } from './Services/seguro.service';
@@ -17,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { DialogAddEditComponent } from "./Dialogs/dialog-add-edit/dialog-add-edit.component";
 import { DialogoDeleteComponent } from "./Dialogs/dialogo-delete/dialogo-delete.component";
+import { XLSX$Consts } from 'xlsx';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -28,13 +30,14 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   displayedColumns: string[] = ['NombresCliente', 'ApellidosCliente', 'Cedula', 'Telefono', 'edad', 'NombresSeguro', 'Acciones'];
   dataSource = new MatTableDataSource<Afiliado>();
+ 
 
-
-
+  File: any;
   constructor(
     private _afiliadoService: AfiliadoService,
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private http: HttpClient,
   ) {
 
   }
@@ -141,8 +144,22 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
 
+   importarPersonasDesdeExcelAsync(file: any) {
+    const formData = new FormData();
+    formData.append('excel', file);
 
+    try {
+      const response =  this._afiliadoService.importarPersonasDesdeExcel(formData).toPromise();
+      console.log('Importación exitosa', response);
+    } catch (error) {
+      console.error('Error al importar', error);
+    }
+  }
 
-
-
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.importarPersonasDesdeExcelAsync(file);
+    }
+  }
 }

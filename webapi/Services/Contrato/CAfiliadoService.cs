@@ -1,4 +1,5 @@
-﻿using webapi.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using webapi.Models;
 namespace webapi.Services.Contrato
 {
     public interface CAfiliadoService
@@ -18,7 +19,7 @@ namespace webapi.Services.Contrato
 
         Task<List<Afiliado>> GetAfiliadosBySeguroId(int idSeguro);
 
-        Task<object> CargarUsuarios(IFormFile archivoExcel);
+        Task<IActionResult> ImportarPersonasDesdeExcel(IFormFile excel);
 
     }
 }

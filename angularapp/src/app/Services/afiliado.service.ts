@@ -26,13 +26,19 @@ export class AfiliadoService {
   }
 
   delete(id: number): Observable<void> {
+    console.log("ID de Seguro recibido:", id);
     return this.http.delete<void>(`${this.apiUrl}eliminar/${id}`); // Ajusta la ruta según tu API
   }
 
   getListAfiliadoSeguro(id: number): Observable<Afiliado[]> {
-    return this.http.get<Afiliado[]>(`${this.apiUrl}ListaSeguro/${id}`); // Ajusta la ruta según tu API
+    console.log("ID de Seguro recibido:", id); // Agrega esta línea
+    return this.http.get<Afiliado[]>(`${this.apiUrl}ListaSeguro/{id}?idSeguro=${id}` );
   }
+ 
 
+  importarPersonasDesdeExcel(excel: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}CargarArchivo`, excel); // Ajusta la ruta según tu API
+  }
 
 
 

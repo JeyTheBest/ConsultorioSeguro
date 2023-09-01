@@ -225,6 +225,7 @@ app.MapDelete("/afiliado/eliminar/{id}", async (
 });
 
 app.MapGet("/afiliado/ListaSeguro/{id}", async (
+
     int idSeguro,
     CAfiliadoService _afiliadoService,
     IMapper _mapper
@@ -244,23 +245,22 @@ app.MapGet("/afiliado/ListaSeguro/{id}", async (
 
 
 app.MapPost("/afiliado/CargarArchivo", async (
-    IFormFile archivoExcel,
-    CAfiliadoService _afiliadoService
-
+    IFormFile excel,
+    CAfiliadoService _afiliadoService,
+    IMapper _mapper
     ) =>
 {
     try
     {
-        var result = await _afiliadoService.CargarUsuarios(archivoExcel);
+        var result = await _afiliadoService.ImportarPersonasDesdeExcel(excel);
+        var listaAfiliadoDTO = _mapper.Map<List<AfiliadoDTO>>(result);
+        return Results.Ok(listaAfiliadoDTO);
 
-        return Results.Ok(result); 
-        
     }
     catch (Exception ex)
     {
-        return Results.NotFound(StatusCodes.Status500InternalServerError);
+        return Results.Ok("algo salio mal");
     }
-
 });
 
 

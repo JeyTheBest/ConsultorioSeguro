@@ -1,9 +1,15 @@
 ﻿
+using ClosedXML.Excel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
+using System;
+using System.Runtime.CompilerServices;
 using webapi.Models;
 using webapi.Services.Contrato;
+
+
+
 
 namespace webapi.Services.Implementacion
 {
@@ -120,7 +126,7 @@ namespace webapi.Services.Implementacion
             try
             {
                 List<Afiliado> afiliados = await _dbContex.Afiliados
-                    .Where(af => af.IdSeguro == idSeguro)
+                    .Where(afiliados => afiliados.IdSeguro == idSeguro)
                     .ToListAsync();
 
                 return afiliados;
@@ -132,42 +138,38 @@ namespace webapi.Services.Implementacion
         }
 
 
-        public Task<object> CargarUsuarios(IFormFile archivoExcel)
+        public async Task<IActionResult> ImportarPersonasDesdeExcel(IFormFile excel)
         {
-            try
+            var workbook = new XLWorkbook(excel.OpenReadStream());
+
+            var hoja = workbook.Worksheet(1);
+
+            var primeraFilaUsada = hoja.FirstRowUsed().RangeAddress.FirstAddress.RowNumber;
+            var ultimaFilaUsada = hoja.LastRowUsed().RangeAddress.FirstAddress.RowNumber;
+
+            var personas = new List<Afiliado>();
+
+            for (int i = primeraFilaUsada + 1; i <= ultimaFilaUsada; i++)
             {
-                using (var package = new ExcelPackage(archivoExcel.OpenReadStream()))
-                {
-                    var worksheet = package.Workbook.Worksheets[0]; // Suponemos que los datos están en la primera hoja
+                var fila = hoja.Row(i);
+                var persona = new Afiliado();
 
-                    int rows = worksheet.Dimension.Rows;
-                    int cols = worksheet.Dimension.Columns;
+                persona.Cedula = fila.Cell(1).GetString();
+                persona.NombresCliente = fila.Cell(2).GetString(); /*.GetValue<decimal>();*/
+                persona.ApellidosCliente = fila.Cell(3).GetString(); /*.GetDateTime();*/
+                persona.Telefono = fila.Cell(4).GetString();
+                persona.Edad = fila.Cell(5).GetValue<int>();
+                persona.IdSeguro = fila.Cell(6).GetValue<int>();
 
-                    for (int row = 2; row <= rows; row++) // Comenzamos desde 2 para omitir el encabezado
-                    {
-                        string nombreUsuario = worksheet.Cells[row, 1].Text;
-                        string correoElectronico = worksheet.Cells[row, 2].Text;
-                        // Otras columnas...
-
-                        // Crear objeto de usuario y guardar en la base de datos
-                        // Lógica de la base de datos aquí...
-                    }
-                }
-
-                return Task.FromResult<object>(new { message = "Usuarios cargados exitosamente." });
+                personas.Add(persona);
             }
-            catch (Exception ex)
-            {
-                return Task.FromResult<object>(new { message = "Error al cargar usuarios.", error = ex.Message });
-            }
+
+            _dbContex.AddRange(personas);
+            await _dbContex.SaveChangesAsync();
+
+            return new ObjectResult(new { message = "Datos importados correctamente" }) { StatusCode = 200 };
+
         }
-
-
-
-
-
-
-
 
 
 
