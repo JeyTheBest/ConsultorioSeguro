@@ -248,6 +248,7 @@ C:\Users\User\source\repos\ConsultorioSeguro\webapi\bin\Debug\net7.0\Irony.dll
 C:\Users\User\source\repos\ConsultorioSeguro\webapi\bin\Debug\net7.0\SixLabors.Fonts.dll
 C:\Users\User\source\repos\ConsultorioSeguro\webapi\bin\Debug\net7.0\System.IO.Packaging.dll
 C:\Users\User\source\repos\ConsultorioSeguro\webapi\bin\Debug\net7.0\XLParser.dll
+<<<<<<< HEAD
 C:\Users\JEY\source\repos\CODE CHALLENGE\ConsultorioSeguro\webapi\bin\Debug\net7.0\ClosedXML.dll
 C:\Users\JEY\source\repos\CODE CHALLENGE\ConsultorioSeguro\webapi\bin\Debug\net7.0\DocumentFormat.OpenXml.dll
 C:\Users\JEY\source\repos\CODE CHALLENGE\ConsultorioSeguro\webapi\bin\Debug\net7.0\ExcelNumberFormat.dll
@@ -255,3 +256,5 @@ C:\Users\JEY\source\repos\CODE CHALLENGE\ConsultorioSeguro\webapi\bin\Debug\net7
 C:\Users\JEY\source\repos\CODE CHALLENGE\ConsultorioSeguro\webapi\bin\Debug\net7.0\SixLabors.Fonts.dll
 C:\Users\JEY\source\repos\CODE CHALLENGE\ConsultorioSeguro\webapi\bin\Debug\net7.0\System.IO.Packaging.dll
 C:\Users\JEY\source\repos\CODE CHALLENGE\ConsultorioSeguro\webapi\bin\Debug\net7.0\XLParser.dll
+=======
+>>>>>>> fbb8a4ad85c49e30f726ca8432d2f0e0dbde7079

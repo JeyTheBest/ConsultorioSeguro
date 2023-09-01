@@ -42,6 +42,7 @@ export class VerAfilaidosSeguroComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
+<<<<<<< HEAD
     //if (this.data && this.data.dataAfiliado) {
     //  this.afiliado = {
     //    id: this.data.dataAfiliado.id,
@@ -54,6 +55,19 @@ export class VerAfilaidosSeguroComponent implements OnInit, AfterViewInit {
     //  };
     //}
     this.mostrarAfiliadosSeguro();
+=======
+    if (this.data && this.data.dataAfiliado) {
+      this.afiliado = {
+        id: this.data.dataAfiliado.id,
+        cedula: this.data.dataAfiliado.cedula,
+        nombresCliente: this.data.dataAfiliado.nombresCliente,
+        apellidosCliente: this.data.dataAfiliado.apellidosCliente,
+        telefono: this.data.dataAfiliado.telefono,
+        edad: this.data.dataAfiliado.edad,
+        idSeguro: this.data.dataAfiliado.idSeguro,
+      };
+    } /*this.mostrarAfiliadosSeguro()*/
+>>>>>>> fbb8a4ad85c49e30f726ca8432d2f0e0dbde7079
   }
 
 
@@ -63,6 +77,7 @@ export class VerAfilaidosSeguroComponent implements OnInit, AfterViewInit {
   }
 
   mostrarAfiliadosSeguro() {
+<<<<<<< HEAD
     /*const id = this.data['dataAfiliado'];*/
     console.log('ID del Seguro:', this.data['dataAfiliado']);
     if (this.data && this.data.dataAfiliado) {
@@ -72,6 +87,15 @@ export class VerAfilaidosSeguroComponent implements OnInit, AfterViewInit {
       this._afiliadoService.getListAfiliadoSeguro(id).subscribe({
         next: (afiliados) => {
           console.log('Afiliados:', afiliados);
+=======
+    if (this.data && this.data.dataAfiliado && this.data.dataAfiliado.idSeguro) {
+      const id = this.data.dataAfiliado.idSeguro;
+      console.log('ID del Seguro:', id); // Paso 1: Imprimir el ID del seguro
+
+      this._afiliadoService.getListAfiliadoSeguro(id).subscribe({
+        next: (afiliados) => {
+          console.log('Afiliados:', afiliados); // Paso 2: Imprimir la respuesta del servicio
+>>>>>>> fbb8a4ad85c49e30f726ca8432d2f0e0dbde7079
           this.dataSourceAfiliadoSeguro.data = afiliados;
         },
         error: (error) => {
@@ -81,9 +105,16 @@ export class VerAfilaidosSeguroComponent implements OnInit, AfterViewInit {
     } else {
       console.error('dataAfiliado is undefined or has no idSeguro');
     }
+<<<<<<< HEAD
 
   }
 
 
+=======
+  }
+
+
+
+>>>>>>> fbb8a4ad85c49e30f726ca8432d2f0e0dbde7079
 
 }

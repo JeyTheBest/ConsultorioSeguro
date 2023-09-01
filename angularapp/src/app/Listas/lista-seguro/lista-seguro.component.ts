@@ -33,7 +33,11 @@ export class ListaSeguroComponent implements OnInit {
 
   displayedColumns: string[] = ['NombreSeguro', 'CodigoSeguro', 'SumaAseguradora', 'Prima', 'Acciones'];
   dataSourceSeguro = new MatTableDataSource<Seguro>();
+
   afiliado: any;
+
+
+
 
   constructor(
     
@@ -93,6 +97,26 @@ export class ListaSeguroComponent implements OnInit {
       data: { dataAfiliado: seguro }
     });
   }
+
+  //DialogoVerAfiliadosSeguro(seguro: Seguro) {
+  //  console.log('Datos del seguro:', seguro); // Imprime los datos del seguro en la consola
+  //  this.dialog.open(VerAfilaidosSeguroComponent, {
+  //    data: { dataAfiliado: seguro }
+  //  });
+  //}
+
+
+  //abrirDialogoParaVerAfiliados() {
+  //  if (this.afiliado) {
+  //    this.dialog.open(VerAfilaidosSeguroComponent, {
+  //      data: { dataAfiliado: this.afiliado }
+  //    });
+  //  } else {
+  //    console.error('afiliado is undefined');
+  //  }
+  //}
+
+
 
 
   //abrirDialogoParaVerAfiliados() {

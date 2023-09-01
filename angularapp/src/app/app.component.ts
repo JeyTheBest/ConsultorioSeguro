@@ -18,7 +18,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { DialogAddEditComponent } from "./Dialogs/dialog-add-edit/dialog-add-edit.component";
 import { DialogoDeleteComponent } from "./Dialogs/dialogo-delete/dialogo-delete.component";
 import { XLSX$Consts } from 'xlsx';
+<<<<<<< HEAD
 import { HttpClient } from '@angular/common/http';
+=======
+>>>>>>> fbb8a4ad85c49e30f726ca8432d2f0e0dbde7079
 
 
 @Component({
@@ -37,7 +40,11 @@ export class AppComponent implements AfterViewInit, OnInit {
     private _afiliadoService: AfiliadoService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
+<<<<<<< HEAD
     private http: HttpClient,
+=======
+    
+>>>>>>> fbb8a4ad85c49e30f726ca8432d2f0e0dbde7079
   ) {
 
   }
@@ -143,11 +150,13 @@ export class AppComponent implements AfterViewInit, OnInit {
     })
   }
 
+  ImportarPersonasDesdeExcel(File: any) {
 
    importarPersonasDesdeExcelAsync(file: any) {
     const formData = new FormData();
     formData.append('excel', file);
 
+<<<<<<< HEAD
     try {
       const response =  this._afiliadoService.importarPersonasDesdeExcel(formData).toPromise();
       console.log('Importación exitosa', response);
@@ -155,6 +164,10 @@ export class AppComponent implements AfterViewInit, OnInit {
       console.error('Error al importar', error);
     }
   }
+=======
+  }
+
+>>>>>>> fbb8a4ad85c49e30f726ca8432d2f0e0dbde7079
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];

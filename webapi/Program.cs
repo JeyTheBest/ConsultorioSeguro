@@ -253,9 +253,15 @@ app.MapPost("/afiliado/CargarArchivo", async (
     try
     {
         var result = await _afiliadoService.ImportarPersonasDesdeExcel(excel);
+<<<<<<< HEAD
         var listaAfiliadoDTO = _mapper.Map<List<AfiliadoDTO>>(result);
         return Results.Ok(listaAfiliadoDTO);
 
+=======
+        var listaAfiliadoDTO = _mapper.Map<List<AfiliadoDTO>>(result); 
+        return Results.Ok(listaAfiliadoDTO); 
+        
+>>>>>>> fbb8a4ad85c49e30f726ca8432d2f0e0dbde7079
     }
     catch (Exception ex)
     {

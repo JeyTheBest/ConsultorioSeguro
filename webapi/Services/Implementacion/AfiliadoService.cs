@@ -4,7 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using System;
+<<<<<<< HEAD
 using System.Runtime.CompilerServices;
+=======
+>>>>>>> fbb8a4ad85c49e30f726ca8432d2f0e0dbde7079
 using webapi.Models;
 using webapi.Services.Contrato;
 
@@ -167,11 +170,21 @@ namespace webapi.Services.Implementacion
             _dbContex.AddRange(personas);
             await _dbContex.SaveChangesAsync();
 
+<<<<<<< HEAD
             return new ObjectResult(new { message = "Datos importados correctamente" }) { StatusCode = 200 };
 
         }
 
 
+=======
+            return View("Index");
+        }
+
+        private IActionResult View(string v)
+        {
+            throw new NotImplementedException();
+        }
+>>>>>>> fbb8a4ad85c49e30f726ca8432d2f0e0dbde7079
 
 
     }
